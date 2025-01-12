@@ -179,7 +179,15 @@ def solve():
         obj.solved_count += 1
         db.session.commit()
 
-        return jsonify({'message': 'Solve added successfully.'}), 200
+        voucher = None
+        if obj.id == 2:
+            voucher = "ATLAS-SO6DO"
+        elif obj.id == 3:
+            voucher = "ATLAS-AO7DO"
+        elif obj.id == 4:
+            voucher = "ATLAS-KKDO14"
+
+        return jsonify({'message': 'Solve added successfully.', 'voucher': voucher}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
